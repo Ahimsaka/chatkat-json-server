@@ -2,7 +2,7 @@ package com.chatkat.rest.service.influxdb;
 
 import org.influxdb.annotation.Column;
 
-public class UserResult {
+public class UserRecord {
     @Column(name = "sum")
     private int sum;
     @Column(name = "authorID")
@@ -18,6 +18,9 @@ public class UserResult {
     public int getSum() {
         return sum;
     }
-    public String getAuthorID(){return authorID.substring(1);}
+    public String getAuthorID() {
+        return authorID;
+    }
+    public long getKey(){return Long.parseLong(authorID.substring(1));}
 
 }
