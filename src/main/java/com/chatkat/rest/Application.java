@@ -1,8 +1,7 @@
 package com.chatkat.rest;
 
-import com.chatkat.rest.service.influxdb.InfluxDBMapperTemp;
+import com.chatkat.rest.service.InfluxDBMapperTemp;
 import org.influxdb.InfluxDB;
-import org.influxdb.impl.InfluxDBMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.chatkat.rest.service.influxdb;
+package com.chatkat.rest.dataobjects;
 
 import org.influxdb.annotation.Column;
 

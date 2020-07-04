@@ -20,11 +20,11 @@ public class AppCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        /*String guildId = "631868491955175540";
-
-        Guild guild = guildBuilder.build(guildId);
-        log.info(guild.toString());*/
         log.info("Running");
+
+        String guildId = "631868491955175540";
+        Guild guild = guildBuilder.build(guildId);
+        log.info(guild.toString());
         String channelId = "631868491959369730";
         Channel channel = channelBuilder.build(channelId);
         log.info(channel.toString());
