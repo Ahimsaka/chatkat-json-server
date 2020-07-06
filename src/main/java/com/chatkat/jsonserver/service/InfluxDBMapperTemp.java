@@ -1,4 +1,4 @@
-package com.chatkat.rest.service;
+package com.chatkat.jsonserver.service;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Query;

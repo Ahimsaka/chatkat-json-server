@@ -1,6 +1,6 @@
-package com.chatkat.rest;
+package com.chatkat.jsonserver;
 
-import com.chatkat.rest.service.InfluxDBMapperTemp;
+import com.chatkat.jsonserver.service.InfluxDBMapperTemp;
 import org.influxdb.InfluxDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
-package com.chatkat.rest.service;
+package com.chatkat.jsonserver.service;
 
-import com.chatkat.rest.dataobjects.User;
-import com.chatkat.rest.dataobjects.UserRecord;
+import com.chatkat.jsonserver.dataobjects.User;
+import com.chatkat.jsonserver.dataobjects.UserRecord;
 import org.influxdb.dto.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,6 @@ public class UserArrayBuilder {
     private Map<Long, Integer> getUserMessageCountsMap(final Query query, final long guildId) {
         return Flux.fromIterable(
                 influxDBMapper.query(query, UserRecord.class, String.format("g%d", guildId)))
-                .log()
                 .collectMap(UserRecord::getKey, UserRecord::getSum).block();
     }
 
@@ -34,9 +33,9 @@ public class UserArrayBuilder {
     }
 
 
-    public List<User> findUsers (final Query query, final long guildId, final int approximate_member_count) {
+    public List<User> findUsers (final Query query, final long guildId, final int approximate_member_count) throws NullPointerException {
         Map<Long, Integer> userMap =
-                getUserMessageCountsMap(query, guildId);
+                Objects.requireNonNull(getUserMessageCountsMap(query, guildId), "Guild not found in database.");
 
         List<User> userMetadata = new ArrayList<>(approximate_member_count);
 

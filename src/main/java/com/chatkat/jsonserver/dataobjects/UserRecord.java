@@ -1,4 +1,4 @@
-package com.chatkat.rest.dataobjects;
+package com.chatkat.jsonserver.dataobjects;
 
 import org.influxdb.annotation.Column;
 
