@@ -8,16 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserArrayBuilder {
-    @Autowired private GuildBuilder guildbuilder;
-    @Autowired private InfluxDBMapperTemp influxDBMapper;
-    @Autowired private WebClient webClient;
+    @Autowired
+    private GuildBuilder guildbuilder;
+    @Autowired
+    private InfluxDBMapperTemp influxDBMapper;
+    @Autowired
+    private WebClient webClient;
 
 
     private Map<Long, Integer> getUserMessageCountsMap(final Query query, final long guildId) {
@@ -28,13 +28,13 @@ public class UserArrayBuilder {
     }
 
 
-    public List<User> findUsers(final Query query, final long guildId){
-        int approximate_member_count = guildbuilder.guildData(String.valueOf(guildId)).getApproximate_member_count();
+    public List<User> findUsers(final Query query, final long guildId) {
+        int approximate_member_count = guildbuilder.guildData(guildId).getApproximate_member_count();
         return findUsers(query, guildId, approximate_member_count);
     }
 
 
-    public List<User> findUsers(final Query query, final long guildId, final int approximate_member_count){
+    public List<User> findUsers (final Query query, final long guildId, final int approximate_member_count) {
         Map<Long, Integer> userMap =
                 getUserMessageCountsMap(query, guildId);
 

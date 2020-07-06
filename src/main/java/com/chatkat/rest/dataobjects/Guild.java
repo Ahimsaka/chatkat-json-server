@@ -6,8 +6,8 @@ import java.util.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Guild {
-    private long id;
     private String name;
+    private long id;
     private int approximate_member_count;
     private List<User> users;
 

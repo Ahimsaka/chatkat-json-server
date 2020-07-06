@@ -6,9 +6,9 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Channel {
+    private String name;
     private long id;
     private long guild_id;
-    private String name;
     private List<User> users;
 
 
