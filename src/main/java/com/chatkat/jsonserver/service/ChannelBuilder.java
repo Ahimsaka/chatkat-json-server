@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import java.util.Objects;
 
 @Service
+// build Channel object with user scores.
 public class ChannelBuilder {
     @Autowired
     private WebClient webClient;
@@ -17,16 +18,18 @@ public class ChannelBuilder {
     private UserArrayBuilder userArrayBuilder;
 
     public Channel build(final long channelId) throws NullPointerException, WebClientResponseException {
+        // get Channel object with metadata from discord
         Channel channel = Objects.requireNonNull(channelData(channelId));
 
+        // set Discord Query to variable.
         Query query = new Query(String.format("SELECT * FROM (SELECT sum(\"isValid\") FROM g%d WHERE channelID = 'c%d') GROUP BY authorID", channel.getGuild_id(), channelId));
 
+        // Set channel user scores.
         channel.setUsers(userArrayBuilder.findUsers(query, channel.getGuild_id()));
-
         return channel;
     }
 
-
+    // create Channel object with populated metadata from Discord API.
     public Channel channelData(final long channelId) throws WebClientResponseException {
         return webClient.get()
                 .uri(String.format("/channels/%d", channelId))
@@ -34,5 +37,4 @@ public class ChannelBuilder {
                 .bodyToMono(Channel.class)
                 .block();
     }
-
 }

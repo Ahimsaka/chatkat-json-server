@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/* Temporary InfluxDBMapper subclass extends InfluxDBMapper to use toPOJO signature in a
+*  new .query() signature. This extension has been added as a pull request on influxdb-java
+* and should be removed when pull request is accepted. */
 public class InfluxDBMapperTemp extends InfluxDBMapper {
     private InfluxDB influxDB;
 

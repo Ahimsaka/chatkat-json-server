@@ -2,6 +2,12 @@ package com.chatkat.jsonserver.dataobjects;
 
 import org.influxdb.annotation.Column;
 
+/* Class for InfluxDBMapper to map output.
+*
+* Typically would be Annotated with @Measurement, but ChatKat bot uses
+* the id of the guild in which the message is recorded as the measurement name
+* and skipping annotation allows variable measurement.
+* (see Application.java defined Bean influxDBMapper) */
 public class UserRecord {
     @Column(name = "sum")
     private int sum;

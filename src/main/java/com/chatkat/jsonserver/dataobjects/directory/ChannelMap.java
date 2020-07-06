@@ -9,10 +9,12 @@ public class ChannelMap {
 
     public ChannelMap(){
     }
+
     @Override
     public String toString(){
         return String.format("{name: %s, id: %d}", name, id);
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -24,6 +26,7 @@ public class ChannelMap {
     public String getName(){
         return this.name;
     }
+
     public long getId() {
         return this.id;
     }

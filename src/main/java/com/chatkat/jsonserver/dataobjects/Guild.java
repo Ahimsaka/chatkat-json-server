@@ -19,12 +19,15 @@ public class Guild {
     public void setUsers(List<User> users){
         this.users = users;
     }
+
     public void setId(long id) {
         this.id = id;
     }
+
     public void setApproximate_member_count(int approximate_member_count) {
         this.approximate_member_count = approximate_member_count;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -32,12 +35,15 @@ public class Guild {
     public long getId() {
         return id;
     }
+
     public int getApproximate_member_count() {
         return approximate_member_count;
     }
+
     public String getName() {
         return name;
     }
+
     public List<User> getUsers() {
         return users;
     }
