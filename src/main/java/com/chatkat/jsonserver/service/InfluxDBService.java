@@ -16,7 +16,7 @@ import java.util.Map;
 /* Temporary InfluxDBMapper subclass extends InfluxDBMapper to use toPOJO signature in a
 *  new .query() signature. This extension has been added as a pull request on influxdb-java
 * and should be removed when pull request is accepted. */
-@Component
+@Service
 public class InfluxDBService extends InfluxDBMapper {
     private Logger log = LoggerFactory.getLogger(InfluxDBService.class);
     private InfluxDB influxDB;
