@@ -1,43 +1,30 @@
 package com.chatkat.jsonserver;
 
-import com.chatkat.jsonserver.service.InfluxDBMapperTemp;
+import com.chatkat.jsonserver.dataobjects.User;
+import com.chatkat.jsonserver.service.DiscordApiWebClientService;
+import com.chatkat.jsonserver.service.InfluxDBService;
 import org.influxdb.InfluxDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.*;
 
 @SpringBootApplication
 /* boilerplate base application class which also defines 3 magic Beans */
 public class Application {
+    private Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-    @Bean
-    public Logger log() {
-        return LoggerFactory.getLogger("Application.java");
-    }
-
-    /* InfluxDBMapperTemp extends InfluxDBMapper to add a signature to
-    * InfluxDBMapper.query() that utilizes a relatively new signature of
-    * InfluxDBResultMapper.toPojo(), allowing InfluxDBMapper to map a query
-    * with variable measurement name. I have made a pull request on influxdb-java
-    * suggesting that the additional signature of query() be added to InfluxDBMapper. */
-    @Bean
-    public InfluxDBMapperTemp influxDBMapper(InfluxDB influxDB) {
-        return new InfluxDBMapperTemp(influxDB.setDatabase("ChatKat"));
-    }
-    /* Restore original version if influxDBMapper pull request is accepted
-    @Bean
-    public InfluxDBMapper influxDBMapper(InfluxDB influxDB) {
-        return new InfluxDBMapper(influxDB.setDatabase("ChatKat"));
-    }
-    */
 
     // add baseUrl and default authorization header to Spring Boot configured webclient
     @Bean
@@ -46,7 +33,21 @@ public class Application {
                 .defaultHeader("Authorization", botToken).build();
     }
 
+    @Component
+    public class CommandLineAppStartupRunner implements CommandLineRunner {
+        @Autowired
+        DiscordApiWebClientService discordApiWebClientService;
+
+        long guildId = Long.parseLong("631868491955175540");
+
+        @Override
+        public void run(String... args) throws Exception {
+            log.info("Server's up, big hoss.");
+        }
+    }
 }
+
+
 
 
 
