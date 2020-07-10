@@ -38,8 +38,6 @@ public class Application {
         @Autowired
         DiscordApiWebClientService discordApiWebClientService;
 
-        long guildId = Long.parseLong("631868491955175540");
-
         @Override
         public void run(String... args) throws Exception {
             log.info("Server's up, big hoss.");
