@@ -1,9 +1,6 @@
 package com.chatkat.jsonserver;
 
-import com.chatkat.jsonserver.dataobjects.User;
 import com.chatkat.jsonserver.service.DiscordApiWebClientService;
-import com.chatkat.jsonserver.service.InfluxDBService;
-import org.influxdb.InfluxDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.*;
 
 @SpringBootApplication
 /* boilerplate base application class which also defines 3 magic Beans */

@@ -1,6 +1,5 @@
 package com.chatkat.jsonserver.service;
 
-import com.chatkat.jsonserver.dataobjects.Channel;
 import com.chatkat.jsonserver.dataobjects.Guild;
 import com.chatkat.jsonserver.dataobjects.User;
 import org.influxdb.dto.Query;
@@ -8,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.Comparator;
@@ -25,7 +23,7 @@ public class GuildService {
     @Autowired
     private InfluxDBService influxDBService;
 
-    public Guild getById(final long guildId, final String time_frame) throws NullPointerException, WebClientResponseException {
+    public Guild getById(final long guildId) throws NullPointerException, WebClientResponseException {
         // build Guild object with metadata from discord API
         Guild guild = Objects.requireNonNull(discordApiWebClientService.getGuildById(guildId));
 

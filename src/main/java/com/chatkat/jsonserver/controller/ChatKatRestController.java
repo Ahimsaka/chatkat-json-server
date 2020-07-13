@@ -36,7 +36,7 @@ class ChatKatRestController {
 
     @GetMapping("/guild/{id}")
     public Guild guild(@PathVariable("id") final  long id, @RequestParam(value = "last", defaultValue="") final String last) {
-        return guildService.getById(id, setInterval(last));
+        return guildService.getById(id);
     }
 
     @GetMapping("/channel/{id}")

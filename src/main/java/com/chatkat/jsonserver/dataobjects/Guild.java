@@ -15,7 +15,6 @@ import java.util.*;
 public class Guild {
     private String name;
     private long id;
-    private int approximate_member_count;
     private List<User> users;
     @Singular
     private List<Channel> channels;
