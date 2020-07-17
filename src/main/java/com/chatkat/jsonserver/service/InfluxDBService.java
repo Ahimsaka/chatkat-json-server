@@ -1,15 +1,21 @@
 package com.chatkat.jsonserver.service;
 
 import com.chatkat.jsonserver.dataobjects.UserRecord;
+import lombok.Data;
 import org.influxdb.InfluxDB;
+import org.influxdb.annotation.Column;
 import org.influxdb.dto.Query;
 import org.influxdb.impl.InfluxDBMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +42,9 @@ public class InfluxDBService extends InfluxDBMapper {
     }
 
     private long getKey(UserRecord userRecord) {
-        return Long.parseLong(userRecord.getAuthorID().substring(1));
+        return Long.parseLong(userRecord.getId().substring(1));
     }
+
+
 
 }

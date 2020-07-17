@@ -37,12 +37,12 @@ public class DirectoryService {
                 .map(QueryResult.Result::getSeries)
                 .flatMap(Collection::stream)
                 // collect GuildMap objects
-                .map(this::getGuild)
+                .map(this::getGuildWithChannels)
                 .collect(Collectors.toList());
     }
 
     // accept influxDB-java QueryResult.Series and return GuildMap object with channels
-    private Guild getGuild(final QueryResult.Series series){
+    private Guild getGuildWithChannels(final QueryResult.Series series){
         Guild guild = discordApiWebClientService.getGuildById(Long.parseLong(series.getName().substring(1)));
         //populate guild channel list
         guild.setChannels(getGuildChannels(series.getValues()));
